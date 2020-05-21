@@ -13,7 +13,7 @@ import {
     NETWORKS_IPAM, REPORTS,
     PHONE_REPORTS_BY_MODELS, PHONE_REPORTS_BY_CLUSTERS, PHONE_REPORTS_BY_NOT_USED, PHONE_REPORTS_BY_AGENT_LICENSES,
     DICT_CITIES, DICT_DEVICES, DICT_HW_LOGS, DICT_NETWORKS, DICT_OFFICE_STATUSES, DICT_PHONE_LOGS, DICT_PORT_TYPES,
-    DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING
+    DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES
 } from "../../constants/urls";
 
 
@@ -47,6 +47,12 @@ const TopNavBar = (props) => {
                                 <DropdownItem><NavLink to={PHONE_REPORTS_BY_CLUSTERS} external>по кластерам</NavLink></DropdownItem>
                                 <DropdownItem><NavLink to={PHONE_REPORTS_BY_NOT_USED} external>по неиспользуемым</NavLink></DropdownItem>
                                 <DropdownItem><NavLink to={PHONE_REPORTS_BY_AGENT_LICENSES} external>по Agent Licenses</NavLink></DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                         <Dropdown nav inNavbar>
+                            <DropdownToggle nav caret>Tools</DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem><NavLink to={UNREGISTERED_PHONES}>Поиск незарегистрированных телефонов</NavLink></DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </Nav>

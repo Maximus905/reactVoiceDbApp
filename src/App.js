@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import TopNavBar from "./components/TopNavBar"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {Page, PageHeader, PageMain, PageFooter} from "./components/Page";
 import RegCentersMapTable from "./components/RegCentersMapTable";
-import {DICT_REG_CENTERS_MAPPING} from "./constants/urls";
+import UnregisteredPhonesPage from "./components/UnregistredPhonesPage";
+import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES} from "./constants/urls";
 
 
 function App() {
@@ -17,7 +18,11 @@ function App() {
             <PageMain>
                 <Switch>
                     <Route path={DICT_REG_CENTERS_MAPPING} exact>
+                        {/*<UnregisteredPhonesPage/>*/}
                         <RegCentersMapTable/>
+                    </Route>
+                    <Route path={UNREGISTERED_PHONES} exact>
+                        <UnregisteredPhonesPage/>
                     </Route>
                 </Switch>
             </PageMain>

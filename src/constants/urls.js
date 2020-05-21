@@ -9,12 +9,10 @@ export const BASE_URL = (() => {
 })()
 console.log("BASE API URL", BASE_URL)
 
-export const TABLE_DATA_URL = `${BASE_URL}/mappingTables/regCentersTableData.json`
-export const FILTER_DATA_URL = `${BASE_URL}/mappingTables/regCentersFilterData.json`
-export const SAVE_CHANGES_URL = `${BASE_URL}`
 // Top menu URLs
 //internal links
-export const DICT_REG_CENTERS_MAPPING= `/r/rc/mapping`
+export const DICT_REG_CENTERS_MAPPING= `/vra/rc/mapping`
+export const UNREGISTERED_PHONES = `/vra/tools/unregisteredPhones`
 //external links
 export const LOCATIONS = `${BASE_URL}/locations`
 export const DEVICES = `${BASE_URL}/device/info`
@@ -36,3 +34,6 @@ export const DICT_VRFS= `${BASE_URL}/admin/vrf`
 export const DICT_NETWORKS= `${BASE_URL}/admin/NetworksTab`
 export const DICT_HW_LOGS= `${BASE_URL}/log/appliance`
 export const DICT_PHONE_LOGS= `${BASE_URL}/log/phone`
+// for unregistered phones in office
+export const OFFICE_LIST_URL = `${BASE_URL}/phone/officeList.json`
+
