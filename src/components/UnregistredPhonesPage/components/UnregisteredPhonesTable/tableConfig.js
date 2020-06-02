@@ -1,6 +1,7 @@
 /**@jsx jsx*/
 import {jsx} from "@emotion/core";
 import {TABLE_DATA_URL, FILTER_DATA_URL} from "../../constants/urls";
+import {DateTimeCell} from "../CustomCells";
 
 /**
  * Allowed filter types
@@ -28,9 +29,9 @@ export const config = {
     columns: [
         {
             accessor: 'sep',
-            title: 'Hostname',
-            minWidth: 100,
-            maxWidth: 200,
+            title: 'Phone name',
+            minWidth: 150,
+            maxWidth: 150,
             sortable: false,
             filterable: false,
         },
@@ -38,7 +39,7 @@ export const config = {
             accessor: 'sw_port',
             title: 'Switch port',
             minWidth: 100,
-            maxWidth: 200,
+            maxWidth: 130,
             sortable: false,
             filterable: false,
         },
@@ -46,6 +47,14 @@ export const config = {
             accessor: 'ph_port',
             title: 'Phone port',
             minWidth: 100,
+            maxWidth: 130,
+            sortable: false,
+            filterable: false,
+        },
+        {
+            accessor: 'sw_name',
+            title: 'Switch hostname',
+            minWidth: 150,
             maxWidth: 300,
             sortable: false,
             filterable: false,
@@ -57,6 +66,49 @@ export const config = {
             maxWidth: 300,
             sortable: false,
             filterable: false,
-        }
+        },
+        {
+            accessor: 'model',
+            title: 'Phone model',
+            minWidth: 100,
+            maxWidth: 300,
+            sortable: false,
+            filterable: false,
+        },
+        {
+            accessor: 'inventory_number',
+            title: 'Inv. number',
+            minWidth: 100,
+            maxWidth: 300,
+            sortable: false,
+            filterable: false,
+        },
+        {
+            accessor: 'last_update',
+            title: 'Last update',
+            minWidth: 150,
+            maxWidth: 300,
+            sortable: false,
+            filterable: false,
+            customCell: DateTimeCell
+        },
+        {
+            accessor: 'cdp_last_update',
+            title: 'CDP info last update',
+            minWidth: 150,
+            maxWidth: 300,
+            sortable: false,
+            filterable: false,
+            customCell: DateTimeCell
+        },
+        {
+            accessor: 'is_in_db',
+            title: 'Registered in DB',
+            isVisible: false,
+            minWidth: 100,
+            maxWidth: 300,
+            sortable: false,
+            filterable: false,
+        },
     ]
 }

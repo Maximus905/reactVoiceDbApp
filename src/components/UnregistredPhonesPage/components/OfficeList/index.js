@@ -33,7 +33,7 @@ const officeLoader = async ({url, accessor, filters, sorting, dataFieldName, lab
 }
 
 
-const OfficeList = ({onChangeSelected, buttonTitle, dataUrl, accessor}) => {
+const OfficeList = ({onChangeSelected, buttonTitle, dataUrl, accessor, disabled}) => {
     const btnStyle = css`
   min-width: 250px;
   max-width: 600px;
@@ -43,14 +43,14 @@ const OfficeList = ({onChangeSelected, buttonTitle, dataUrl, accessor}) => {
   background-color: rgb(35,89,130);
   }
 `
-    const DDButton = ({buttonRef, checkedItemsValue, checkedItemsLabel}) => (
-            <Button className="d-flex justify-content-between w-100" innerRef={buttonRef} css={btnStyle}>
+    const DDButton = ({buttonRef, checkedItemsValue, checkedItemsLabel, disabled}) => (
+            <Button className="d-flex justify-content-between w-100" innerRef={buttonRef} css={btnStyle} disabled={disabled}>
                 <div title={checkedItemsLabel.join(',')}>{(checkedItemsLabel.join(','))  || 'Выберите офис'}</div>
                 <div className="pl-1"><FontAwesomeIcon icon={faAngleDown}/></div>
             </Button>
         )
 
-    return <DropdownList accessor={accessor} dataUrl={dataUrl} buttonContainerWidth="100%" buttonIcon={DDButton} maxHeight={400} widthMenuLikeButton minWidth={200} maxWidth={600} onChangeSelected={onChangeSelected} onOpen={()=>{}} onClose={()=>{}} closeAfterSelect />
+    return <DropdownList accessor={accessor} dataUrl={dataUrl} buttonContainerWidth="100%" buttonIcon={DDButton} maxHeight={400} widthMenuLikeButton minWidth={200} maxWidth={600} onChangeSelected={onChangeSelected} onOpen={()=>{}} onClose={()=>{}} closeAfterSelect disabled={disabled} />
 }
 
 OfficeList.propTypes = {

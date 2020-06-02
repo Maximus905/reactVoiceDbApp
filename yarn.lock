@@ -964,7 +964,14 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.4.0", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.5.5":
+  version "7.10.2"
+  resolved "http://10.99.120.221:4873/@babel%2fruntime/-/runtime-7.10.2.tgz#d103f21f2602497d38348a32e008637d506db839"
+  integrity sha512-6sF3uQw2ivImfVIl62RZ7MXhO2tap69WeWK57vAaimT6AZbE4FbqjdEJIN1UqoD6wI6B+1n9UiagafH1sxjOtg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.4.0", "@babel/runtime@^7.5.1", "@babel/runtime@^7.7.4":
   version "7.9.6"
   resolved "http://10.99.120.221:4873/@babel%2fruntime/-/runtime-7.9.6.tgz#a9102eb5cadedf3f31d08a9ecf294af7827ea29f"
   integrity sha512-64AF1xY3OAkFHqOb9s4jpgk1Mm5vDZ4L3acHvAml+53nO1XbXLuDodsVpO4OIUsmemlUHMxNdYMNJmsvOwLrvQ==
@@ -1378,9 +1385,9 @@
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
 "@rsb/dropdown-list@^1.0.3", "@rsb/dropdown-list@^1.0.4":
-  version "1.0.6"
-  resolved "http://10.99.120.221:4873/@rsb%2fdropdown-list/-/dropdown-list-1.0.6.tgz#f3aee9ba02b3d0668fcd996c66039dfb48a9e1f3"
-  integrity sha512-8jcnZt3lRfHYaR3XQ8XWpuKa3s3SrHirZvJ/UC0Wh65+fISEW8scj3SrKtKwNj41pbTwXkxbmp87Y/2Tbz7ANA==
+  version "1.0.7"
+  resolved "http://10.99.120.221:4873/@rsb%2fdropdown-list/-/dropdown-list-1.0.7.tgz#a17a974d0d591d2c4d9fe6c8a44402f5e041a78b"
+  integrity sha512-CxEScgu+KcxN+0dfDhDcYGk35CcwVfcFuZvCqfHtgB1q+bPWoJXrxlPo/AnXAiEDYm/CNivcD4X7bHVd4SgPqw==
   dependencies:
     "@emotion/core" "^10.0.28"
     "@fortawesome/fontawesome-svg-core" "^1.2.28"
@@ -1395,9 +1402,9 @@
     reactstrap "^8.4.1"
 
 "@rsb/simple-table@^1.0.12":
-  version "1.0.13"
-  resolved "http://10.99.120.221:4873/@rsb%2fsimple-table/-/simple-table-1.0.13.tgz#ac0833a90a2d6ff5d50859dffa86f99fa314e304"
-  integrity sha512-zRo9YJpzMCy3WgSKYRdsX30OTXVsSTx8QxvgzH7KVAx96Tt+m6940YYbzrfU/PzILetZKu5ouDDkV3nUzgTroA==
+  version "1.0.16"
+  resolved "http://10.99.120.221:4873/@rsb%2fsimple-table/-/simple-table-1.0.16.tgz#5fbcf142ff5ec812c2e097f34a7f688bde82273f"
+  integrity sha512-+6DLKdf4eJhIGXcwMUaFL4vZBl9rAEIrpr0wk6rzzN/I4Uu+6p10zXjzl6s8ssJu/J2+cvfEhWrXor5Gw0O3CQ==
   dependencies:
     "@emotion/core" "^10.0.28"
     "@fortawesome/fontawesome-svg-core" "^1.2.27"
@@ -7135,6 +7142,11 @@ mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@~0.5.1:
   integrity sha512-P+2gwrFqx8lhew375MQHHeTlY8AuOJSrGf0R5ddkEndUkmwpgUob/vQuBD1V22/Cw1/lJr4x+EjllSezBThzBg==
   dependencies:
     minimist "^1.2.5"
+
+moment@^2.26.0:
+  version "2.26.0"
+  resolved "http://10.99.120.221:4873/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
+  integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

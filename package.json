@@ -1,7 +1,7 @@
 {
   "name": "voice-rs-react",
   "homepage": "/vra",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.28",
@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "check-types": "^11.1.2",
+    "moment": "^2.26.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

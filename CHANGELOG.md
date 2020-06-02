@@ -4,3 +4,5 @@
 ## 1.0.2
 * added reg centers mapping table with editable rec centers column
 * added a menu item Tools and page for searching unregistered phones in offices
+## 1.0.3
+* into searching unregistered phones added reload button
