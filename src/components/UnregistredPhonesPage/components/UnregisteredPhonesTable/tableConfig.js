@@ -99,7 +99,8 @@ export const config = {
             maxWidth: 300,
             sortable: false,
             filterable: false,
-            customCell: DateTimeCell
+            customCell: DateTimeCell,
+            isVisible: false
         },
         {
             accessor: 'is_in_db',

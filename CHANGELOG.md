@@ -6,3 +6,5 @@
 * added a menu item Tools and page for searching unregistered phones in offices
 ## 1.0.3
 * into searching unregistered phones added reload button
+## 1.0.4
+* added a field for setting last update age
