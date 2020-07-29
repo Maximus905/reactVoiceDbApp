@@ -13,6 +13,7 @@ console.log("BASE API URL", BASE_URL)
 //internal links
 export const DICT_REG_CENTERS_MAPPING= `/vra/rc/mapping`
 export const UNREGISTERED_PHONES = `/vra/tools/unregisteredPhones`
+export const CUCM_ROUTING = '/vra/tools/cucmRouting'
 //external links
 export const LOCATIONS = `${BASE_URL}/locations`
 export const DEVICES = `${BASE_URL}/device/info`
@@ -36,4 +37,6 @@ export const DICT_HW_LOGS= `${BASE_URL}/log/appliance`
 export const DICT_PHONE_LOGS= `${BASE_URL}/log/phone`
 // for unregistered phones in office
 export const OFFICE_LIST_URL = `${BASE_URL}/phone/officeList.json`
+//for cucm routing page
+export const CUCM_LIST = 'http://10.99.120.223/cucm_list/'
 
