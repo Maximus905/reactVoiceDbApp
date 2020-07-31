@@ -1,7 +1,7 @@
 {
   "name": "voice-rs-react",
   "homepage": "/vra",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.28",
