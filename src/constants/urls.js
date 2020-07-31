@@ -13,6 +13,7 @@ console.log("BASE API URL", BASE_URL)
 //internal links
 export const DICT_REG_CENTERS_MAPPING= `/vra/rc/mapping`
 export const UNREGISTERED_PHONES = `/vra/tools/unregisteredPhones`
+export const TEST_TOOLS = `/vra/tools/testing`
 //external links
 export const LOCATIONS = `${BASE_URL}/locations`
 export const DEVICES = `${BASE_URL}/device/info`

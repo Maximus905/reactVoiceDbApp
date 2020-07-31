@@ -27,7 +27,7 @@ const UnregisteredPhonesPage = (props) => {
                     </div>
                     <Button className="ml-2" css={css`background-color: rgb(62,148,224)`} onClick={onReloadHandler} disabled={loading}><FontAwesomeIcon icon={faSync}/></Button>
                     <div className="ml-2 p-2" css={css`background-color: rgb(62,148,224); color: white; border-radius: 0.25rem`}>Last update (hours ago) ></div>
-                    <div className="ml-2" css={css`width: 100px`}><Input type="number" value={age} onChange={e => setAge(e.target.value)} readonly={loading ? "readonly" : false} /></div>
+                    <div className="ml-2" css={css`width: 100px`}><Input type="number" value={age} onChange={e => setAge(e.target.value)} readOnly={loading} /></div>
                 </div>
             </div>
             <div css={css`flex-grow: 1; min-height: 0; height: 100%`}>
