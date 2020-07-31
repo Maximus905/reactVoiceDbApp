@@ -9,4 +9,6 @@
 ## 1.0.4
 * added a field for setting last update age
 ## 1.0.5
+* added CORS testing page(/vra/tools/testing)
+## 1.0.6
 * added CucmRouting page
