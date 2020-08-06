@@ -11,7 +11,6 @@ const dataLoader = async ({url, filters, extFilters, sorting, pagination, dataFi
       console.log('Error fetching data from server: ', res)
       throw new Error('Error fetching data from server')
     }
-    console.log({result: res.data})
     return {data: res.data, counter: res.data.length}
   } catch (e) {
     alert(e.toString())

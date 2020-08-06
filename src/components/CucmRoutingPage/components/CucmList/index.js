@@ -12,7 +12,6 @@ import {GET_CUCM_LIST} from "../../../../constants";
 const cucmListLoader = async ({url, accessor, filters, sorting, dataFieldName, labelFieldName, valueFieldName}) => {
   try {
     const res = await axios.get(url)
-    console.log('result', res)
     if (!Array.isArray(res.data)) {
       console.log('invalid data from server: ', res)
       throw new Error('Error fetching data from server')
