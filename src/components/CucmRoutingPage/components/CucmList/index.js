@@ -6,25 +6,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import {CUCM_LIST} from "../../../../constants";
+import {GET_CUCM_LIST} from "../../../../constants";
 
 
-async function ddData() {
-  const TEST_URL = 'http://netcmdb.rs.ru/api/getRegCenters.json'
-  const res = await axios.get(TEST_URL, {
-    method: "GET",
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    }
-  })
-  console.log('result', CUCM_LIST, res)
-  const data = ['cucm 1', 'cucm 2']
-  return new Promise(resolve => resolve({data}))
-}
 const cucmListLoader = async ({url, accessor, filters, sorting, dataFieldName, labelFieldName, valueFieldName}) => {
   try {
-    const res = await axios.get(url, {port: 8080})
+    const res = await axios.get(url)
     console.log('result', res)
     if (!Array.isArray(res.data)) {
       console.log('invalid data from server: ', res)
@@ -55,7 +42,7 @@ const CucmList = ({onChangeSelected, buttonTitle, dataUrl, accessor, disabled}) 
   )
 
   return <DropdownList
-    accessor={accessor} dataUrl={CUCM_LIST} buttonContainerWidth="100%"
+    accessor={accessor} dataUrl={GET_CUCM_LIST} buttonContainerWidth="100%"
     buttonIcon={DDButton} maxHeight={400} widthMenuLikeButton
     minWidth={200} maxWidth={600}
     onChangeSelected={onChangeSelected} onOpen={()=>{}} onClose={()=>{}}

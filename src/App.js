@@ -7,7 +7,7 @@ import RegCentersMapTable from "./components/RegCentersMapTable";
 import UnregisteredPhonesPage from "./components/UnregistredPhonesPage";
 import CucmRoutingPage from "./components/CucmRoutingPage";
 import TestToolsPage from "./components/TestToolsPage";
-import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTING, TEST_TOOLS} from "./constants";
+import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS} from "./constants";
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
                     <Route path={UNREGISTERED_PHONES} exact>
                         <UnregisteredPhonesPage/>
                     </Route>
-                    <Route path={CUCM_ROUTING} exact>
+                    <Route path={CUCM_ROUTES} exact>
                       <CucmRoutingPage/>
                     </Route>
                     <Route path={TEST_TOOLS} exact>

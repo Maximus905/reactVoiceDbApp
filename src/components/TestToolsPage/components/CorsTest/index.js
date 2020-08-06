@@ -37,8 +37,8 @@ const CorsTestForm = () => {
         <h5>CORS request testing</h5>
         <p>For example you can try this URL: <a href="https://reqres.in/api/products/3" onClick={onClickLink}>https://reqres.in/api/products/3</a></p>
         <Input className="mb-2" type="text" placeholder="enter URL" value={url} onChange={e => setUrl(e.target.value)}/>
-        <Input className="mb-2" type="textarea" placeholder={"Response from server"} value={res} readOnly/>
-        <Input className="mb-2" type="textarea" placeholder={"Errors from server"} value={error} readOnly/>
+        <Input className="mb-2" type="textarea" placeholder={"Response from server"} value={res} readOnly rows={6}/>
+        <Input className="mb-2" type="textarea" placeholder={"Errors from server"} value={error} readOnly rows={6}/>
         <div className='d-flex'>
           <Button className="mr-2" onClick={onClickClearButton}>Clear results</Button>
           <Button onClick={onClickGetRequest}>Send GET Request</Button>

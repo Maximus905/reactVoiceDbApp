@@ -13,8 +13,8 @@ import {
     NETWORKS_IPAM, REPORTS,
     PHONE_REPORTS_BY_MODELS, PHONE_REPORTS_BY_CLUSTERS, PHONE_REPORTS_BY_NOT_USED, PHONE_REPORTS_BY_AGENT_LICENSES,
     DICT_CITIES, DICT_DEVICES, DICT_HW_LOGS, DICT_NETWORKS, DICT_OFFICE_STATUSES, DICT_PHONE_LOGS, DICT_PORT_TYPES,
-    DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES
-} from "../../constants/urls";
+    DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS
+} from "../../constants";
 
 
 const TopNavBar = (props) => {
@@ -53,6 +53,8 @@ const TopNavBar = (props) => {
                             <DropdownToggle nav caret>Tools</DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem><NavLink to={UNREGISTERED_PHONES}>Поиск незарегистрированных телефонов</NavLink></DropdownItem>
+                                <DropdownItem><NavLink to={CUCM_ROUTES}>CUCM маршрутизация</NavLink></DropdownItem>
+                                <DropdownItem><NavLink to={TEST_TOOLS}>Testing CORS requests</NavLink></DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </Nav>

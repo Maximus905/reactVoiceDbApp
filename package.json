@@ -1,15 +1,15 @@
 {
   "name": "voice-rs-react",
   "homepage": "/vra",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "@rsb/dropdown-list": "^1.0.4",
-    "@rsb/simple-table": "^1.0.12",
+    "@rsb/dropdown-list": "^1.0.8",
+    "@rsb/simple-table": "^1.0.19",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

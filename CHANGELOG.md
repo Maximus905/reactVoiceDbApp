@@ -12,3 +12,6 @@
 * added CORS testing page(/vra/tools/testing)
 ## 1.0.6
 * added CucmRouting page
+* updated @rsb/dropdown-list and @rsb/simple-table
+* expanded response and errors fields on 'Test CORS requests' page
+* 'Test CORS requests' page added to top bar menu
