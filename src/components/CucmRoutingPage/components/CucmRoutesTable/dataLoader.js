@@ -2,10 +2,10 @@ import axios from 'axios'
 
 const dataLoader = async ({url, filters, extFilters, sorting, pagination, dataFieldName, dataCounterFieldName}) => {
   try {
-    const {cucm, pattern} = extFilters
-    if (!cucm || !pattern) return {data: [], counter: 0}
+    const {cucm, pattern, cucmCss} = extFilters
+    if (!cucm || !pattern || !cucmCss) return {data: [], counter: 0}
     const res = await axios.get(url, {
-      params: {cucm, num: pattern}
+      params: {cucm, num: pattern, css: cucmCss}
     })
     if (res.status !== 200 || !Array.isArray(res.data)) {
       console.log('Error fetching data from server: ', res)

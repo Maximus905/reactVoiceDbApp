@@ -41,4 +41,5 @@ export const OFFICE_LIST_URL = `${BASE_URL}/phone/officeList.json`
 //for cucm routing page
 export const GET_CUCM_LIST = 'http://10.99.120.223:8000/cucm_list/'
 export const GET_CUCM_ROUTES = 'http://10.99.120.223:8000/outgoing_routes/'
+export const GET_CSS_LIST = 'http://10.99.120.223:8000/css_list/'
 
