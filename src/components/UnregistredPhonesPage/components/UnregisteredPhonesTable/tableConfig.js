@@ -1,6 +1,6 @@
 /**@jsx jsx*/
 import {jsx} from "@emotion/core";
-import {TABLE_DATA_URL, FILTER_DATA_URL} from "../../constants/urls";
+import {UNREGISTERED_PHONES_TABLE_DATA_URL} from "../../../../constants";
 import {DateTimeCell} from "../CustomCells";
 
 /**
@@ -23,8 +23,8 @@ const ft = {
 export const config = {
     // tableDataLoader: fetchTableData,
     // filterDataLoader: fetchFilterList,
-    tableDataUrl: TABLE_DATA_URL,
-    filterDataUrl: FILTER_DATA_URL,
+    tableDataUrl: UNREGISTERED_PHONES_TABLE_DATA_URL,
+    filterDataUrl: '',
     showGlobalSearch: false,
     columns: [
         {

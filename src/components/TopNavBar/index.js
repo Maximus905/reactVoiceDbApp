@@ -8,16 +8,33 @@ import {
 import {NavLink, NavItem, Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "./styledComponents";
 import logo from './logo_brs_small.png'
 import {
-    LOCATIONS, DEVICES,
-    PHONES_INFO_URL, PHONES_FIO_URL, PHONES_REDIRECTED_PHONES_URL,
-    NETWORKS_IPAM, REPORTS,
-    PHONE_REPORTS_BY_MODELS, PHONE_REPORTS_BY_CLUSTERS, PHONE_REPORTS_BY_NOT_USED, PHONE_REPORTS_BY_AGENT_LICENSES,
-    DICT_CITIES, DICT_DEVICES, DICT_HW_LOGS, DICT_NETWORKS, DICT_OFFICE_STATUSES, DICT_PHONE_LOGS, DICT_PORT_TYPES,
-    DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS
+  LOCATIONS, DEVICES,
+  PHONES_INFO_URL, PHONES_FIO_URL, PHONES_REDIRECTED_PHONES_URL,
+  NETWORKS_IPAM, REPORTS,
+  PHONE_REPORTS_BY_MODELS, PHONE_REPORTS_BY_CLUSTERS, PHONE_REPORTS_BY_NOT_USED, PHONE_REPORTS_BY_AGENT_LICENSES,
+  DICT_CITIES, DICT_DEVICES, DICT_HW_LOGS, DICT_NETWORKS, DICT_OFFICE_STATUSES, DICT_PHONE_LOGS, DICT_PORT_TYPES,
+  DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS,
+  LOGOUT_PAGE
 } from "../../constants";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
+import {clearToken, logout} from "../LoginPage/helpers";
 
 
-const TopNavBar = (props) => {
+const TopNavBar = ({clearTimerSchedule, setTokenExpDate}) => {
+
+
+    const onClickLogout = async (e) => {
+        e.preventDefault()
+        console.log('onClick')
+        const res = await logout()
+        if (res) {
+            clearToken()
+            clearTimerSchedule()
+            setTokenExpDate(false)
+        }
+    }
+
     return (
             <Navbar color="light" light css={css`padding: 0; font-size: 15px`} expand="xs">
                 <div className="container-fluid align-items-stretch" css={css`padding-left: 15px !important; padding-right: 15px !important;`}>
@@ -75,6 +92,12 @@ const TopNavBar = (props) => {
                                 <DropdownItem divider />
                                 <DropdownItem><NavLink to={DICT_HW_LOGS} external>Логи Hardware</NavLink></DropdownItem>
                                 <DropdownItem><NavLink to={DICT_PHONE_LOGS} external>Логи Phones</NavLink></DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                        <Dropdown nav inNavbar>
+                            <DropdownToggle nav><FontAwesomeIcon icon={faUserCircle} size='2x' /></DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem><NavLink to={'#'} onClick={onClickLogout} >Logout</NavLink></DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </Nav>
