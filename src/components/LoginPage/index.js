@@ -28,7 +28,6 @@ const LoginPage = ({setTokenExpDate, setLoggedIn}) => {
   const redirectInfo = location.state && location.state.from
     ? {pathname: location.state.from.pathname, search: location.state.from.search}
     : {pathname: URL_HOME_PAGE}
-  console.log('login page', {location, redirectInfo})
 
 
   const onSubmit = async (e) => {
@@ -37,8 +36,8 @@ const LoginPage = ({setTokenExpDate, setLoggedIn}) => {
     if (!errorCode && !errorMessage) {
       setToken(token)
       setTokenInfo(JSON.stringify(user))
-      setTokenExpDate(user.exp)
       setError(null)
+      setTokenExpDate(user.exp)
     } else {
       setError(errorMessage)
     }
@@ -60,7 +59,7 @@ const LoginPage = ({setTokenExpDate, setLoggedIn}) => {
               <Col>
                 <FormGroup>
                   <Label css={labelCss} for='username'>Email</Label>
-                  <Input type='email' name='username' id='username' placeholder='myemail@email.rs.ru' onChange={e => setUsername(e.target.value)} value={username} />
+                  <Input type='text' name='username' id='username' placeholder='user@rs.ru' onChange={e => setUsername(e.target.value)} value={username} />
                 </FormGroup>
               </Col>
             </Row>

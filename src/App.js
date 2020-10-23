@@ -8,10 +8,9 @@ import UnregisteredPhonesPage from "./components/UnregistredPhonesPage";
 import CucmRoutingPage from "./components/CucmRoutingPage";
 import TestToolsPage from "./components/TestToolsPage";
 import LoginPage from "./components/LoginPage";
-import LocationsPage from "./components/LocationsPage";
 import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS, LOGIN_PAGE} from "./constants";
 import PageNotFound from "./components/Page404"
-import {login, refreshToken, isLoggedIn, getTokenTimeBeforeRefresh, checkTokenTime, setToken, setTokenInfo, clearToken} from "./components/LoginPage/helpers";
+import {login, refreshToken, isLoggedIn, getTokenTimeBeforeRefresh, checkTokenTime, setToken, setTokenInfo, getToken, getTokenInfo, clearToken} from "./components/LoginPage/helpers";
 
 // const isLogged = () => {
 //   const user = JSON.parse(localStorage.getItem('user'))
@@ -19,9 +18,7 @@ import {login, refreshToken, isLoggedIn, getTokenTimeBeforeRefresh, checkTokenTi
 // }
 
 const PrivateRoute = ({children, ...rest}) => {
-  const {path, url} = useRouteMatch()
   const location = useLocation()
-  console.log({path, url, location})
   return (
     <Route {...rest} render={({match}) => {
       return isLoggedIn() ? children : <Redirect to={{pathname: LOGIN_PAGE, state: {from: location}}} />
@@ -30,7 +27,7 @@ const PrivateRoute = ({children, ...rest}) => {
 }
 
 function App() {
-  const [tokenExpDate, setTokenExpDate] = useState()
+  const [tokenExpDate, setTokenExpDate] = useState(0)
   const timerId = useRef(null)
 
   useEffect(() => {
@@ -45,8 +42,11 @@ function App() {
       }
       return {user, token}
     }
-
-    if (tokenExpDate && new Date((tokenExpDate - 2*60) * 1000) > new Date()) {
+    if (tokenExpDate === 0) {
+      const tokenInfo = JSON.parse(getTokenInfo())
+      const tokenExp = tokenInfo && tokenInfo.exp ? tokenInfo.exp : null
+      setTokenExpDate(tokenExp)
+    } else if (tokenExpDate && new Date((tokenExpDate - 2*60) * 1000) > new Date()) {
       const timeout = new Date((tokenExpDate - 2*60) * 1000) - new Date()
       console.log('setTimeout')
       timerId.current = setTimeout(() => refresh(), timeout)
@@ -56,7 +56,7 @@ function App() {
       }
     } else {
       console.log('before refresh')
-      refresh().then(() => console.log('refresh'))
+      refresh().then(() => console.log('refresh')).catch(e => console.log(e.message))
     }
   }, [tokenExpDate])
 
@@ -72,21 +72,18 @@ function App() {
             </PageHeader>
             <PageMain>
                 <Switch>
-                  <Route path='/vra/locations'>
-                    <LocationsPage />
-                  </Route>
-                    <Route path={DICT_REG_CENTERS_MAPPING} exact>
-                        <RegCentersMapTable/>
-                    </Route>
-                    <Route path={UNREGISTERED_PHONES} exact>
-                        <UnregisteredPhonesPage/>
-                    </Route>
+                    <PrivateRoute path={DICT_REG_CENTERS_MAPPING} exact>
+                      <RegCentersMapTable/>
+                    </PrivateRoute>
+                    <PrivateRoute path={UNREGISTERED_PHONES} exact>
+                      <UnregisteredPhonesPage/>
+                    </PrivateRoute>
                     <PrivateRoute path={CUCM_ROUTES} exact>
                       <CucmRoutingPage/>
                     </PrivateRoute>
-                    <PrivateRoute path={TEST_TOOLS} exact>
+                    <Route path={TEST_TOOLS} exact>
                       <TestToolsPage/>
-                    </PrivateRoute>
+                    </Route>
                     <Route path={LOGIN_PAGE}>
                       <LoginPage setTokenExpDate={setTokenExpDate}/>
                     </Route>

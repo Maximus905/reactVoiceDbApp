@@ -4,7 +4,7 @@ export const BASE_URL = (() => {
     const protocol = window.location.protocol
     const hostname = window.location.hostname
     const port = window.location.port
-    const developMode = true || hostname === 'localhost' || hostname === 'test.rs.ru'
+    const developMode = hostname === 'netcmdb-loc.rs.ru' || hostname === 'localhost' || hostname === 'test.rs.ru'
     return developMode ? `${protocol}//${DEVELOPED_BASE_URL}` : `${protocol}//${hostname}${port==='' ? '' : ':'}${port}`
 })()
 console.log("BASE API URL", BASE_URL)
