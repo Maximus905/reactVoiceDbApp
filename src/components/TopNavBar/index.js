@@ -17,21 +17,19 @@ import {
 } from "../../constants";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
-import {clearToken, logout} from "../LoginPage/helpers";
+import {clearToken, logout, isLoggedIn} from "../LoginPageMU/helpers";
 
 
 const TopNavBar = ({clearTimerSchedule, setTokenExpDate}) => {
 
-
     const onClickLogout = async (e) => {
         e.preventDefault()
-        console.log('onClick')
-        const res = await logout()
-        if (res) {
-            clearToken()
-            clearTimerSchedule()
-            setTokenExpDate(false)
-        }
+        if (!isLoggedIn()) return
+
+        await logout()
+        clearToken()
+        clearTimerSchedule()
+        setTokenExpDate(false)
     }
 
     return (

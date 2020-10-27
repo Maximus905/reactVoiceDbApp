@@ -44,7 +44,7 @@ export const DropdownItem = styled(DropdownItemBs)`
   }
 `
 export const NavLink = props => {
-    const {external, to, isActive, ...rest} = props
+    const {external, to, isActive, disabled, ...rest} = props
     const style = css`
       display: flex;
       align-items: center;
@@ -59,9 +59,12 @@ export const NavLink = props => {
         font-weight: normal;
       }
     `
+    const onClick = (e) => {
+        if (disabled) e.preventDefault()
+    }
     return external
-        ? <NavLinkBs css={style} href={to} {...rest} />
-        : <NavLinkBs css={style} tag={StyledNavLink} exact to={to} isActive={isActive} {...rest} />
+        ? <NavLinkBs onClick={onClick} css={style} href={to} {...rest} />
+        : <NavLinkBs onClick={onClick} css={style} tag={StyledNavLink} exact to={to} isActive={isActive} {...rest} />
 }
 NavLink.propTypes = {
     isActive: PropTypes.func,

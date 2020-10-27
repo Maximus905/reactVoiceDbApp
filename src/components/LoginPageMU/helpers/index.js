@@ -46,7 +46,7 @@ const fetchToken = async ({username, password}) => {
       if (checkTokenTime(user)) {
         return {token, user}
       } else {
-        return {error: 401, errorMessage: 'Incorrect client time'}
+        return {errorCode: 401, errorMessage: 'Incorrect client time'}
       }
     }
   } catch (e) {
@@ -83,7 +83,7 @@ export const logout = async () => {
     await axios.get(URL_AUTH_LOGOUT, {withCredentials: true})
     return true
   } catch (e) {
-    console.log('Error in logout: ', e)
+    console.log('Error in logout: ', e.message)
     return false
   }
 }

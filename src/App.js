@@ -1,21 +1,17 @@
 import React, {useState, useEffect, useRef} from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import TopNavBar from "./components/TopNavBar"
-import {BrowserRouter as Router, Switch, Route, Redirect, useRouteMatch, useLocation} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect, useLocation} from "react-router-dom";
 import {Page, PageHeader, PageMain, PageFooter} from "./components/Page";
 import RegCentersMapTable from "./components/RegCentersMapTable";
 import UnregisteredPhonesPage from "./components/UnregistredPhonesPage";
 import CucmRoutingPage from "./components/CucmRoutingPage";
 import TestToolsPage from "./components/TestToolsPage";
-import LoginPage from "./components/LoginPage";
+import SignIn from "./components/LoginPageMU";
 import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS, LOGIN_PAGE} from "./constants";
 import PageNotFound from "./components/Page404"
-import {login, refreshToken, isLoggedIn, getTokenTimeBeforeRefresh, checkTokenTime, setToken, setTokenInfo, getToken, getTokenInfo, clearToken} from "./components/LoginPage/helpers";
+import {refreshToken, isLoggedIn, setToken, setTokenInfo, getTokenInfo, clearToken} from "./components/LoginPageMU/helpers";
 
-// const isLogged = () => {
-//   const user = JSON.parse(localStorage.getItem('user'))
-//   return user && user.exp && new Date(user.exp * 1000) > new Date()
-// }
 
 const PrivateRoute = ({children, ...rest}) => {
   const location = useLocation()
@@ -39,6 +35,7 @@ function App() {
         setTokenExpDate(user.exp)
       } else {
         clearToken()
+        setTokenExpDate(false)
       }
       return {user, token}
     }
@@ -46,18 +43,18 @@ function App() {
       const tokenInfo = JSON.parse(getTokenInfo())
       const tokenExp = tokenInfo && tokenInfo.exp ? tokenInfo.exp : null
       setTokenExpDate(tokenExp)
-    } else if (tokenExpDate && new Date((tokenExpDate - 2*60) * 1000) > new Date()) {
-      const timeout = new Date((tokenExpDate - 2*60) * 1000) - new Date()
-      console.log('setTimeout')
+    } else if (tokenExpDate && new Date((tokenExpDate - 1*60) * 1000) > new Date()) {
+      const timeout = new Date((tokenExpDate - 1*60) * 1000) - new Date()
       timerId.current = setTimeout(() => refresh(), timeout)
       return () => {
-        console.log('clear timeout')
         clearTimeout(timerId.current)
       }
-    } else {
-      console.log('before refresh')
-      refresh().then(() => console.log('refresh')).catch(e => console.log(e.message))
     }
+    // else if (tokenExpDate === false) {
+    //   return
+    // } else {
+    //   refresh().catch(e => console.log(e.message))
+    // }
   }, [tokenExpDate])
 
   const clearTimerSchedule = () => {
@@ -68,7 +65,7 @@ function App() {
       <Router>
         <Page>
             <PageHeader>
-                <TopNavBar clearTimerSchedule={clearTimerSchedule} setTokenExpDate={setTokenExpDate} />
+              {isLoggedIn() ? <TopNavBar clearTimerSchedule={clearTimerSchedule} setTokenExpDate={setTokenExpDate} /> : null}
             </PageHeader>
             <PageMain>
                 <Switch>
@@ -81,11 +78,11 @@ function App() {
                     <PrivateRoute path={CUCM_ROUTES} exact>
                       <CucmRoutingPage/>
                     </PrivateRoute>
-                    <Route path={TEST_TOOLS} exact>
+                    <PrivateRoute path={TEST_TOOLS} exact>
                       <TestToolsPage/>
-                    </Route>
+                    </PrivateRoute>
                     <Route path={LOGIN_PAGE}>
-                      <LoginPage setTokenExpDate={setTokenExpDate}/>
+                      <SignIn setTokenExpDate={setTokenExpDate} />
                     </Route>
                     <Route path='*'>
                       <PageNotFound/>
