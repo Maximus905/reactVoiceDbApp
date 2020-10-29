@@ -1,9 +1,9 @@
 /**@jsx jsx*/
 import {jsx, css} from '@emotion/core'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {login, isLoggedIn, setToken, setTokenInfo} from "./helpers";
 import {Redirect, useLocation} from 'react-router-dom'
-import {URL_HOME_PAGE} from "../../constants";
+import {MAX_REFRESH_ATTEMPTS, URL_HOME_PAGE} from "../../constants";
 
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -21,6 +21,17 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Input} from "reactstrap";
+
+const RedirectExt = (props) => {
+  const {external, to, ...rest} = props
+  console.log('redirect', {external, to})
+  if (external) {
+    window.location = to.pathname
+    return null
+  } else {
+    return <Redirect to={to} {...rest} />
+  }
+}
 
 function Copyright() {
   return (
@@ -61,11 +72,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function SignIn({setTokenExpDate, setLoggedIn}) {
+export default function SignIn({setTokenState}) {
   const classes = useStyles();
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const [loggedIn, setLoggedIn] = useState(false)
   const location = useLocation()
   const redirectInfo = location.state && location.state.from
     ? {pathname: location.state.from.pathname, search: location.state.from.search}
@@ -73,20 +85,24 @@ export default function SignIn({setTokenExpDate, setLoggedIn}) {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    const {user, token, errorCode, errorMessage} = await login({username, password})
+    const {token, tokenPayload, errorCode, errorMessage} = await login({username, password})
     if (!errorCode && !errorMessage) {
       setToken(token)
-      setTokenInfo(JSON.stringify(user))
+      setTokenInfo(JSON.stringify(tokenPayload))
       setError(null)
-      setTokenExpDate(user.exp)
+      setTokenState({expTime: tokenPayload.exp, resCode: 200, refreshAttempts: MAX_REFRESH_ATTEMPTS})
+      setLoggedIn(true)
     } else {
       setError(errorMessage)
     }
   }
 
+  useEffect(() => {
+    if (isLoggedIn()) setLoggedIn(true)
+  }, [])
 
-  return isLoggedIn()
-    ? <Redirect to={redirectInfo} />
+  return loggedIn
+    ? <RedirectExt external={redirectInfo.pathname === URL_HOME_PAGE} to={redirectInfo} />
     : (
     <Container component="main" maxWidth="xs">
       <Card className={classes.card} >

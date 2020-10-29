@@ -29,7 +29,7 @@ export const checkTokenTime = (token) => {
 export const getTokenTimeBeforeRefresh = (token) => {
   // return false if difference between current time and iat time less 1 minute
   const exp = token && check.integer(token.exp) && token.exp
-  return exp * 1000 - (new Date()).getTime()
+  return exp ? exp * 1000 - (new Date()).getTime() : 0
 }
 
 const fetchToken = async ({username, password}) => {
@@ -42,9 +42,9 @@ const fetchToken = async ({username, password}) => {
       return {errorCode: 500, errorMessage: 'Auth service error, invalid token'}
     } else {
       const tokenParts = token.split('.')
-      const user = check.string(tokenParts[1]) && JSON.parse(decode(tokenParts[1]))
-      if (checkTokenTime(user)) {
-        return {token, user}
+      const tokenPayload = check.string(tokenParts[1]) && JSON.parse(decode(tokenParts[1]))
+      if (checkTokenTime(tokenPayload)) {
+        return {token, tokenPayload}
       } else {
         return {errorCode: 401, errorMessage: 'Incorrect client time'}
       }
@@ -64,6 +64,7 @@ const fetchToken = async ({username, password}) => {
 
 export const isLoggedIn = () => {
   const token = getToken()
+  console.log('isLoggedIn', {token})
   const tokenParts = check.string(token) && token.split('.').length === 3 && token.split('.')
   const tokenInfo = tokenParts && check.string(tokenParts[1]) && JSON.parse(decode(tokenParts[1]))
   return tokenInfo && getTokenTimeBeforeRefresh(tokenInfo) > 0

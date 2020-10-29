@@ -21,7 +21,8 @@ export const URL_AUTH_LOGIN = `${BASE_URL}/auth/login`
 export const URL_AUTH_LOGOUT = `${BASE_URL}/auth/logout`
 export const URL_REFRESH_TOKEN = `${BASE_URL}/auth/refreshToken`
 // Home page
-export const URL_HOME_PAGE = CUCM_ROUTES
+// export const URL_HOME_PAGE = CUCM_ROUTES
+export const URL_HOME_PAGE = `${BASE_URL}/locations`
 //external links
 export const LOCATIONS = `${BASE_URL}/locations`
 export const DEVICES = `${BASE_URL}/device/info`

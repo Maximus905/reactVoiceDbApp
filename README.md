@@ -1,6 +1,6 @@
 ### Build and run app
-`npm  run build` or `yarn build`
-content of folder `build` copy to `voice.rs.ru` project into `/reactvoice/app/vra` folder
+* `npm  run build` or `yarn build`  
+* content of folder `build` copy to `voice.rs.ru` project into `/reactvoice/app/vra` folder
 ---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

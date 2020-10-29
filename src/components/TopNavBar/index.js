@@ -20,16 +20,14 @@ import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import {clearToken, logout, isLoggedIn} from "../LoginPageMU/helpers";
 
 
-const TopNavBar = ({clearTimerSchedule, setTokenExpDate}) => {
+const TopNavBar = ({setLoggedOutState}) => {
 
     const onClickLogout = async (e) => {
         e.preventDefault()
         if (!isLoggedIn()) return
 
         await logout()
-        clearToken()
-        clearTimerSchedule()
-        setTokenExpDate(false)
+        setLoggedOutState()
     }
 
     return (
