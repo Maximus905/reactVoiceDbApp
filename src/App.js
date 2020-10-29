@@ -36,14 +36,12 @@ function App() {
 
   useEffect(() => {
     const {expTime, resCode, refreshAttempts} = tokenState
-    console.log('tokenState', tokenState)
 
     async function tokenRefreshHandler() {
       const {token, tokenPayload, errorCode, errorMessage} = await refreshToken()
       if (!errorCode) {
         setToken(token)
         setTokenInfo(JSON.stringify(tokenPayload))
-        console.log('refresh OK', tokenPayload, getTokenTimeBeforeRefresh(tokenPayload))
         setTokenState({expTime: tokenPayload.exp, resCode: 200, refreshAttempts: MAX_REFRESH_ATTEMPTS})
       } else if (errorCode === 401) {
         clearToken()
@@ -54,11 +52,9 @@ function App() {
         const tokenPayload = JSON.parse(getTokenInfo())
 
         if (getTokenTimeBeforeRefresh(tokenPayload) > 0) {
-          console.log('will try again', tokenPayload, getTokenTimeBeforeRefresh(tokenPayload))
           setTokenState({expTime, resCode: errorCode, refreshAttempts: refreshAttempts - 1})
         } else {
           clearToken()
-          console.log('Bad', tokenPayload, getTokenTimeBeforeRefresh(tokenPayload))
           setTokenState({expTime: false, resCode: errorCode, refreshAttempts: MAX_REFRESH_ATTEMPTS})
         }
       }

@@ -11,13 +11,14 @@ import {
 
 
 export const getToken = () => localStorage.getItem(LS_RAW_ACCESS_TOKEN)
-export const setToken = (token) => localStorage.setItem(LS_RAW_ACCESS_TOKEN, token)
+export const setToken = (token) => token === undefined ? localStorage.setItem(LS_RAW_ACCESS_TOKEN, null) : localStorage.setItem(LS_RAW_ACCESS_TOKEN, token)
 export const getTokenInfo = () => localStorage.getItem(LS_USER_PROFILE)
-export const setTokenInfo = (tokenInfo) => localStorage.setItem(LS_USER_PROFILE, tokenInfo)
+export const setTokenInfo = (tokenInfo) => tokenInfo === undefined ? localStorage.setItem(LS_USER_PROFILE, null) : localStorage.setItem(LS_USER_PROFILE, tokenInfo)
 export const clearToken = () => {
   localStorage.removeItem(LS_USER_PROFILE)
   localStorage.removeItem(LS_RAW_ACCESS_TOKEN)
 }
+
 
 export const checkTokenTime = (token) => {
   // return false if difference between current time and iat time less 1 minute
@@ -53,10 +54,12 @@ const fetchToken = async ({username, password}) => {
     if (e.response && e.response.status) {
       const errorCode = e.response.status
       const errorMessage = e.response.data && e.response.data.message
-      return {errorCode, errorMessage}
+      console.log('ERROR', {errorCode, errorMessage})
+      return {errorCode, errorMessage: errorMessage || 'Unexpected auth service error'}
     } else {
       const errorCode = 500
       const errorMessage = 'Unexpected auth service error'
+      console.log('ERROR', {errorCode, errorMessage})
       return {errorCode, errorMessage}
     }
   }
@@ -64,7 +67,6 @@ const fetchToken = async ({username, password}) => {
 
 export const isLoggedIn = () => {
   const token = getToken()
-  console.log('isLoggedIn', {token})
   const tokenParts = check.string(token) && token.split('.').length === 3 && token.split('.')
   const tokenInfo = tokenParts && check.string(tokenParts[1]) && JSON.parse(decode(tokenParts[1]))
   return tokenInfo && getTokenTimeBeforeRefresh(tokenInfo) > 0

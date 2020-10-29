@@ -24,7 +24,6 @@ import {Input} from "reactstrap";
 
 const RedirectExt = (props) => {
   const {external, to, ...rest} = props
-  console.log('redirect', {external, to})
   if (external) {
     window.location = to.pathname
     return null
