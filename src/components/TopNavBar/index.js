@@ -17,7 +17,7 @@ import {
 } from "../../constants";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
-import {clearToken, logout, isLoggedIn} from "../LoginPageMU/helpers";
+import {logout, isLoggedIn} from "../../helpers";
 
 
 const TopNavBar = ({setLoggedOutState}) => {
