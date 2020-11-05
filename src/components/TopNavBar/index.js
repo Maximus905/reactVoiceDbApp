@@ -8,12 +8,12 @@ import {
 import {NavLink, NavItem, Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "./styledComponents";
 import logo from './logo_brs_small.png'
 import {
-  LOCATIONS, DEVICES,
-  PHONES_INFO_URL, PHONES_FIO_URL, PHONES_REDIRECTED_PHONES_URL,
-  NETWORKS_IPAM, REPORTS,
-  PHONE_REPORTS_BY_MODELS, PHONE_REPORTS_BY_CLUSTERS, PHONE_REPORTS_BY_NOT_USED, PHONE_REPORTS_BY_AGENT_LICENSES,
-  DICT_CITIES, DICT_DEVICES, DICT_HW_LOGS, DICT_NETWORKS, DICT_OFFICE_STATUSES, DICT_PHONE_LOGS, DICT_PORT_TYPES,
-  DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS
+    LOCATIONS, DEVICES,
+    PHONES_INFO_URL, PHONES_FIO_URL, PHONES_REDIRECTED_PHONES_URL,
+    NETWORKS_IPAM, REPORTS,
+    PHONE_REPORTS_BY_MODELS, PHONE_REPORTS_BY_CLUSTERS, PHONE_REPORTS_BY_NOT_USED, PHONE_REPORTS_BY_AGENT_LICENSES,
+    DICT_CITIES, DICT_DEVICES, DICT_HW_LOGS, DICT_NETWORKS, DICT_OFFICE_STATUSES, DICT_PHONE_LOGS, DICT_PORT_TYPES,
+    DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS, LOGOUT_PAGE
 } from "../../constants";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
@@ -21,14 +21,6 @@ import {logout, isLoggedIn} from "../../helpers";
 
 
 const TopNavBar = ({setLoggedOutState}) => {
-
-    const onClickLogout = async (e) => {
-        e.preventDefault()
-        if (!isLoggedIn()) return
-
-        await logout()
-        setLoggedOutState()
-    }
 
     return (
             <Navbar color="light" light css={css`padding: 0; font-size: 15px`} expand="xs">
@@ -92,7 +84,7 @@ const TopNavBar = ({setLoggedOutState}) => {
                         <Dropdown nav inNavbar>
                             <DropdownToggle nav><FontAwesomeIcon icon={faUserCircle} size='2x' /></DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem><NavLink to={'#'} onClick={onClickLogout} >Logout</NavLink></DropdownItem>
+                                <DropdownItem><NavLink to={LOGOUT_PAGE}>Logout</NavLink></DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </Nav>

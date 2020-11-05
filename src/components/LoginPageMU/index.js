@@ -92,7 +92,9 @@ export default function SignIn({setTokenState}) {
   }
 
   useEffect(() => {
-    if (isLoggedIn()) setLoggedIn(true)
+    if (isLoggedIn()) {
+      setLoggedIn(true)
+    }
   }, [])
 
   return loggedIn

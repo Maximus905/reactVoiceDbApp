@@ -8,9 +8,11 @@ import UnregisteredPhonesPage from "./components/UnregistredPhonesPage";
 import CucmRoutingPage from "./components/CucmRoutingPage";
 import TestToolsPage from "./components/TestToolsPage";
 import SignIn from "./components/LoginPageMU";
-import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS, LOGIN_PAGE, MAX_REFRESH_ATTEMPTS} from "./constants";
+import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS, LOGIN_PAGE, MAX_REFRESH_ATTEMPTS, LOGOUT_PAGE, LOGOUT_ERROR_PAGE} from "./constants";
 import PageNotFound from "./components/Page404"
 import {refreshToken, isLoggedIn, setToken, setTokenInfo, getTokenInfo, clearToken, getTokenTimeBeforeRefresh, refreshTimeout_ms} from "./helpers";
+import LogoutPage from "./components/LogoutPage";
+import LogoutError from "./components/LogoutError";
 
 const PrivateRoute = ({children, ...rest}) => {
   const location = useLocation()
@@ -82,6 +84,10 @@ function App() {
     clearToken()
     setTokenState({expTime: false, resCode: 200, refreshAttempts: MAX_REFRESH_ATTEMPTS})
   }
+  const clearFunction = () => {
+    if (timerId.current) clearTimeout(timerId.current)
+    clearToken()
+  }
 
   return (
       <Router>
@@ -106,6 +112,12 @@ function App() {
                   </PrivateRoute>
                   <Route path={LOGIN_PAGE}>
                     <SignIn setTokenState={setTokenState} />
+                  </Route>
+                  <Route path={LOGOUT_PAGE}>
+                    <LogoutPage clearFunction={clearFunction} setLoggedOutState={setLoggedOutState} />
+                  </Route>
+                  <Route path={LOGOUT_ERROR_PAGE}>
+                    <LogoutError />
                   </Route>
                   <Route path='*'>
                     <PageNotFound/>
