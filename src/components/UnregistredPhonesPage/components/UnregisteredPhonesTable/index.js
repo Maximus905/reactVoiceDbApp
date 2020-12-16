@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "@rsb/simple-table"
+import Table from "@maximus905/simple-table"
 import {config} from "./tableConfig";
 
 const UnregisteredPhonesTable = ({extFilter, api, setLoading}) => {

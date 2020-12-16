@@ -1,6 +1,6 @@
 /**@jsx jsx*/
 import {jsx, css} from '@emotion/core'
-import DropdownList from '@rsb/dropdown-list'
+import DropdownList from '@maximus905/dropdown-list'
 import {Button} from 'reactstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons'

@@ -1,7 +1,7 @@
 /**@jsx jsx*/
 import {jsx} from "@emotion/core";
 import {TABLE_DATA_URL, FILTER_DATA_URL} from "./constants/urls";
-import {DropdownEditor} from "@rsb/simple-table"
+import {DropdownEditor} from "@maximus905/simple-table"
 
 const RegCenterEditor = props => <DropdownEditor minWidthOfList={200} {...props}/>
 /**
